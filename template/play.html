@@ -1,0 +1,108 @@
+{% extends 'layout.html'%}
+{% block content%}
+<div style="background-image: url('static/images/b3.png'); height: 734px;" class="d-flex justify-content-center align-items-center">
+  <form class="form-group">
+        <div class="form-group height:500px font-size:14pt">
+          <textarea type="text" class="form-control " id="formGroupExampleInput2"></textarea>
+        </div>
+    </form>
+    <br>
+    <div>
+      <button id="play" type="submit" class="btn btn-primary" value="LISTEN">LISTEN</button>
+     <!-- <button id="stop" type="submit" class="btn btn-primary" value="STOP" disabled >STOP</button>-->
+      <button id="next" type="submit" class="btn btn-primary" value="NEXT">NEXT</button>
+    </div class="d-flex justify-content-center">
+  
+
+    
+    <script>
+      var track_index = 1;
+let curr_track = document.createElement('audio');
+let track_list = [
+{
+    name: "school",
+    path: "static/audio/1.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/2.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/33.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/4.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/5.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/6.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/7.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/8.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/9.mp3"
+},
+{
+    name: "home",
+    path: "static/audio/10.mp3"
+},
+
+];
+
+function addTrack(){
+    // Load a new track
+curr_track.src = track_list[track_index].path;
+curr_track.load(); 
+}
+   
+document.getElementById('play').addEventListener('mouseover',
+ function(){
+    addTrack()
+    curr_track.play();
+}, false);
+//
+//document.getElementById('stop').addEventListener('click', 
+//function(){
+ //   curr_track.pause();
+//}, false);
+
+function playTrack() {
+// Play the loaded track
+curr_track.play();
+isPlaying = true;
+}
+
+document.getElementById('next').addEventListener('click',
+function() {
+        // Go back to the first track if the
+    // current one is the last in the track list
+     if (track_index < track_list.length - 1)
+        track_index += 1;
+    else track_index = 0;
+    // Load and play the new track
+    addTrack(track_index);
+    playTrack();
+},false)
+
+  
+    
+    </script>
+</div>
+
+
+
+
+{% endblock %}

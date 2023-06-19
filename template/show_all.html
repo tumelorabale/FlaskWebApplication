@@ -1,0 +1,45 @@
+
+{% extends 'layout.html'%}
+{% block content%}
+<div>
+   <hr/>
+   {%- for message in get_flashed_messages() %}
+      {{ message }}
+   {%- endfor %}
+   
+   <h3>Students (<a href = "{{ url_for('add') }}">NEW
+      </a>)</h3>
+   
+   <table class="table">
+      <thead style="background-color:brown; color:aliceblue">
+         <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Pin</th>
+            <th>level</th>
+            <th>Action</th>
+
+         </tr>
+      </thead>  
+      <tbody>
+         {% for student in students %}
+            <tr>
+               <td>{{ student.name }}</td>
+               <td>{{ student.city }}</td>
+               <td>{{ student.addr }}</td>
+               <td>{{ student.pin }}</td>
+               <td>{{ student.level}}</td>
+               <td> 
+                  <span style="font-size: 24px;color: green;"><a href="/{{student.id}}/edit"><i class="fas fa-edit"></i></a> </span>
+                  <span style="font-size: 24px;color:red;"><a href="/{{student.id}}/delete"><i class="fas fa-trash"></i></a> </span>
+
+               </td>
+            </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+</div>
+
+{% endblock %}
+
